@@ -41,15 +41,72 @@ for plate and case CAD. It supports 40% and 60/65% sizes, with curved or straigh
 
 ![The 60/65% default: the Neo Ergo, with its 10° straight bend, macro column and arrows, case outline on](docs/sixty.png)
 
-## Quick start
+## Setup
 
-The app uses Python's built-in Tk toolkit and needs no pip packages. It does need Tk 8.6 or newer to draw rotated
-labels. macOS's built-in `/usr/bin/python3` only has Tk 8.5, so use Homebrew Python:
+The app is a single Python file using Python's built-in Tk toolkit, with no pip packages. You need:
+
+- **Python 3.9 or newer**
+- **Tk 8.6 or newer**, which draws the rotated key labels
+
+First get the code:
 
 ```sh
-brew install python-tk@3.14
-/opt/homebrew/bin/python3 alice.py
+git clone https://github.com/Noah-Mav/alice-layout-designer.git
+cd alice-layout-designer
 ```
+
+Then follow the steps for your system.
+
+### macOS
+
+macOS's built-in `/usr/bin/python3` only has Tk 8.5, so use Homebrew's Python instead:
+
+```sh
+brew install python python-tk
+$(brew --prefix)/bin/python3 alice.py
+```
+
+Alternatively, the installer from [python.org](https://www.python.org/downloads/macos/) includes Tk 8.6. With that
+installed, run `python3 alice.py`.
+
+### Windows
+
+1. Install Python from [python.org](https://www.python.org/downloads/windows/), or run
+   `winget install Python.Python.3.13`. Tk comes with it; with the python.org installer, leave **tcl/tk and IDLE**
+   ticked.
+2. In the folder, run:
+
+   ```powershell
+   py alice.py
+   ```
+
+### Linux
+
+Install Python's Tk package with your distribution's package manager:
+
+| Distribution | Command |
+|---|---|
+| Debian / Ubuntu / Mint | `sudo apt install python3 python3-tk` |
+| Fedora | `sudo dnf install python3 python3-tkinter` |
+| Arch / Manjaro | `sudo pacman -S python tk` |
+| openSUSE | `sudo zypper install python3 python3-tk` |
+
+Then run:
+
+```sh
+python3 alice.py
+```
+
+### Checking your setup
+
+If the window doesn't open, or the key labels aren't rotated, check the Tk version. Use the same Python command
+you use to start the app (`py` on Windows):
+
+```sh
+python3 -c "import tkinter; print(tkinter.TkVersion)"
+```
+
+It should print `8.6` or higher. `No module named '_tkinter'` means the Tk package from the steps above is missing.
 
 ## Using it
 
@@ -90,7 +147,7 @@ comments say `rule N` where each rule is enforced, and [`test_alice.py`](test_al
 include overlap sweeps over hundreds of combinations of size, bend, angle, stagger and mod column settings.
 
 ```sh
-/opt/homebrew/bin/python3 test_alice.py   # prints "ok"
+python3 test_alice.py   # prints "ok" (on Windows: py test_alice.py; on macOS: the Homebrew python3)
 ```
 
 In short:

@@ -1,8 +1,8 @@
 """Alice-style layout designer (40% and 60/65%): design a curved split layout key by key, export it for
 case/plate CAD.
 
-Run:   /opt/homebrew/bin/python3 alice.py      (needs Tk 8.6+: brew install python-tk@3.14;
-Test:  /opt/homebrew/bin/python3 test_alice.py  macOS's /usr/bin/python3 has Tk 8.5, no rotated text)
+Run:   python3 alice.py       (Windows: py alice.py; needs Python 3.9+ with Tk 8.6+ - see README "Setup".
+Test:  python3 test_alice.py   On macOS use Homebrew's python3: /usr/bin/python3 has Tk 8.5, no rotated text)
 
 DESIGN RULES — the behaviour this tool promises. Code comments say "rule N" where each is enforced,
 and test_alice.py checks each one. Change a rule here first, then the code, then its test.
